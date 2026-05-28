@@ -1,6 +1,43 @@
 import 'package:flutter/material.dart';
+import 'dart:io';
+import 'package:flutter/foundation.dart';
+import 'package:device_info_plus/device_info_plus.dart';
 
-void main() {
+Future<bool> _checkIsEmulator() async {
+  final DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
+
+  if (kIsWeb) return false;
+
+  if (Platform.isAndroid) {
+    AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
+    // If it is NOT a physical device, it's an emulator
+    return !androidInfo.isPhysicalDevice;
+  } else if (Platform.isIOS) {
+    IosDeviceInfo iosInfo = await deviceInfo.iosInfo;
+    // If it is NOT a physical device, it's a simulator
+    return !iosInfo.isPhysicalDevice;
+  }
+
+  // Fallback for other platforms (Web, Desktop, etc.) where emulator status might not apply similarly
+  return false;
+}
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  bool isEmulator = await _checkIsEmulator();
+
+  bool shouldRunHeavyFeatures = !isEmulator;
+
+  if (shouldRunHeavyFeatures)
+  {
+    print("Running on physical device: Heavy features are on");
+    // Init database, BLE and background_service
+  }
+  else {
+    print("Running on emulator: Initializing only main app logic.");
+  }
+
   runApp(const MyApp());
 }
 

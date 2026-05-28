@@ -39,6 +39,7 @@ dependencies:
   objectbox_flutter_libs: ^5.3.2
   flutter_background_service: ^5.1.0
   flutter_blue_plus: ^2.3.4
+  device_info_plus: ^13.1.0
 
 dev_dependencies:
   flutter_test:
