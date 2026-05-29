@@ -14,7 +14,7 @@ Future<bool> _checkIsEmulator() async {
     return !androidInfo.isPhysicalDevice;
   } else if (Platform.isIOS) {
     IosDeviceInfo iosInfo = await deviceInfo.iosInfo;
-    // If it is NOT a physical device, it's a simulator
+    // If it is NOT a physical device, it's an emulator
     return !iosInfo.isPhysicalDevice;
   }
 
@@ -33,6 +33,7 @@ void main() async {
   {
     print("Running on physical device: Heavy features are on");
     // Init database, BLE and background_service
+    
   }
   else {
     print("Running on emulator: Initializing only main app logic.");
