@@ -33,7 +33,7 @@ void main() async {
   {
     print("Running on physical device: Heavy features are on");
     // Init database, BLE and background_service
-    
+    print(wrong)
   }
   else {
     print("Running on emulator: Initializing only main app logic.");
