@@ -13,6 +13,12 @@ class RawTelemetry {
   double magY;
   double magZ;
 
-  RawTelemetry({required this.accelX, required this.accelY, required this.accelZ,
-  required this.magX, required this.magY, required this.magZ});
+  RawTelemetry({
+    required this.accelX,
+    required this.accelY,
+    required this.accelZ,
+    required this.magX,
+    required this.magY,
+    required this.magZ,
+  });
 }

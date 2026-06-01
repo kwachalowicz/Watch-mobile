@@ -7,10 +7,10 @@ class ErrorLog {
 
   String message;
   String stackTrace;
-  
+
   @Property(type: PropertyType.dateUtc)
   DateTime timestamp;
-  
+
   String severity; // e.g., 'WARNING', 'CRITICAL'
 
   ErrorLog({
