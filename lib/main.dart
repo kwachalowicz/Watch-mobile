@@ -29,13 +29,10 @@ void main() async {
 
   bool shouldRunHeavyFeatures = !isEmulator;
 
-  if (shouldRunHeavyFeatures)
-  {
+  if (shouldRunHeavyFeatures) {
     print("Running on physical device: Heavy features are on");
     // Init database, BLE and background_service
-    
-  }
-  else {
+  } else {
     print("Running on emulator: Initializing only main app logic.");
   }
 
