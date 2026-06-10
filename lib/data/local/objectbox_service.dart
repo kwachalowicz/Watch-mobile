@@ -48,16 +48,33 @@ class ObjectBoxService {
     return d;
   }
 
+  /// Kanoniczna ścieżka katalogu store. Liczona przez path_provider, więc daje
+  /// ten sam wynik w każdym izolacie (główny i background service).
+  static Future<String> resolveDirectory() async {
+    final docs = await getApplicationDocumentsDirectory();
+    return '${docs.path}/penguin-obx';
+  }
+
   /// Główny izolat: otwórz (lub utwórz) store.
   static Future<ObjectBoxService> init() async {
     final existing = _instance;
     if (existing != null) return existing;
 
-    final docs = await getApplicationDocumentsDirectory();
-    final dir = '${docs.path}/penguin-obx';
+    final dir = await resolveDirectory();
     final store = await openStore(directory: dir);
 
     _directory = dir;
+    return _instance = ObjectBoxService._(store);
+  }
+
+  /// Otwórz store pod konkretnym katalogiem (fallback dla izolatu background
+  /// service gdy główny izolat nie żyje i nie ma do czego się podłączyć).
+  static Future<ObjectBoxService> initAt(String directory) async {
+    final existing = _instance;
+    if (existing != null) return existing;
+
+    final store = await openStore(directory: directory);
+    _directory = directory;
     return _instance = ObjectBoxService._(store);
   }
 

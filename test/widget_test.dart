@@ -1,30 +1,26 @@
-// This is a basic Flutter widget test.
-//
-// To perform an interaction with a widget in your test, use the WidgetTester
-// utility in the flutter_test package. For example, you can send tap and scroll
-// gestures. You can also use WidgetTester to find child widgets in the widget
-// tree, read text, and verify that the values of widget properties are correct.
+// Smoke tests for pure (DB-free) logic. The full app needs an initialized
+// ObjectBox store, so widget-pumping the app is covered by integration tests
+// on device; here we verify the timezone-agnostic DayKey conversions.
 
-import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-
-import 'package:watch_me/main.dart';
+import 'package:watch_me/core/day_key.dart';
 
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
-    await tester.pumpWidget(const MyApp());
+  group('DayKey', () {
+    test('fromDate encodes YYYYMMDD', () {
+      expect(DayKey.fromDate(DateTime(2026, 5, 27)), 20260527);
+      expect(DayKey.fromDate(DateTime(2026, 1, 1)), 20260101);
+    });
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
+    test('toDate is the inverse of fromDate', () {
+      final d = DateTime(2026, 12, 31);
+      expect(DayKey.toDate(DayKey.fromDate(d)), d);
+    });
 
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
-    await tester.pump();
-
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
+    test('first/last of month', () {
+      expect(DayKey.firstOfMonth(2026, 2), 20260201);
+      expect(DayKey.lastOfMonth(2026, 2), 20260228); // 2026 nie jest przestępny
+      expect(DayKey.lastOfMonth(2024, 2), 20240229); // 2024 przestępny
+    });
   });
 }
