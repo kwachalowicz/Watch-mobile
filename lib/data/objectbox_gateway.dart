@@ -1,5 +1,4 @@
 import 'dart:typed_data';
-import 'package:objectbox/objectbox.dart';
 import 'raw_telemetry.dart';
 import 'error_log.dart';
 import 'package:watch_me/objectbox.g.dart';

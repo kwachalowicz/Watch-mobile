@@ -15,6 +15,9 @@ import 'package:objectbox/objectbox.dart' as obx;
 import 'package:objectbox_flutter_libs/objectbox_flutter_libs.dart';
 
 import 'data/error_log.dart';
+import 'data/models/day_stats.dart';
+import 'data/models/habit.dart';
+import 'data/models/habit_entry.dart';
 import 'data/raw_telemetry.dart';
 
 export 'package:objectbox/objectbox.dart'; // so that callers only have to import this file
@@ -112,6 +115,203 @@ final _entities = <obx_int.ModelEntity>[
     relations: <obx_int.ModelRelation>[],
     backlinks: <obx_int.ModelBacklink>[],
   ),
+  obx_int.ModelEntity(
+    id: const obx_int.IdUid(3, 70420255524118782),
+    name: 'DayStats',
+    lastPropertyId: const obx_int.IdUid(9, 8845519655979280730),
+    flags: 0,
+    properties: <obx_int.ModelProperty>[
+      obx_int.ModelProperty(
+        id: const obx_int.IdUid(1, 6410954514737733209),
+        name: 'id',
+        type: 6,
+        flags: 1,
+      ),
+      obx_int.ModelProperty(
+        id: const obx_int.IdUid(2, 6625269976766718136),
+        name: 'dayKey',
+        type: 6,
+        flags: 40,
+        indexId: const obx_int.IdUid(1, 144346366429394310),
+      ),
+      obx_int.ModelProperty(
+        id: const obx_int.IdUid(3, 8086606740923219923),
+        name: 'steps',
+        type: 6,
+        flags: 0,
+      ),
+      obx_int.ModelProperty(
+        id: const obx_int.IdUid(4, 5928422138474006970),
+        name: 'stepGoal',
+        type: 6,
+        flags: 0,
+      ),
+      obx_int.ModelProperty(
+        id: const obx_int.IdUid(5, 1472561240038421986),
+        name: 'streakDays',
+        type: 6,
+        flags: 0,
+      ),
+      obx_int.ModelProperty(
+        id: const obx_int.IdUid(6, 1568325686944465360),
+        name: 'habitsCompleted',
+        type: 6,
+        flags: 0,
+      ),
+      obx_int.ModelProperty(
+        id: const obx_int.IdUid(7, 7774833247480232339),
+        name: 'habitsTotal',
+        type: 6,
+        flags: 0,
+      ),
+      obx_int.ModelProperty(
+        id: const obx_int.IdUid(8, 2794032726148220327),
+        name: 'updatedAt',
+        type: 10,
+        flags: 0,
+      ),
+      obx_int.ModelProperty(
+        id: const obx_int.IdUid(9, 8845519655979280730),
+        name: 'syncedToCloud',
+        type: 1,
+        flags: 0,
+      ),
+    ],
+    relations: <obx_int.ModelRelation>[],
+    backlinks: <obx_int.ModelBacklink>[],
+  ),
+  obx_int.ModelEntity(
+    id: const obx_int.IdUid(4, 2560185205108857067),
+    name: 'Habit',
+    lastPropertyId: const obx_int.IdUid(10, 7035181120045723205),
+    flags: 0,
+    properties: <obx_int.ModelProperty>[
+      obx_int.ModelProperty(
+        id: const obx_int.IdUid(1, 2424745193931049061),
+        name: 'id',
+        type: 6,
+        flags: 1,
+      ),
+      obx_int.ModelProperty(
+        id: const obx_int.IdUid(2, 1292606214069913958),
+        name: 'uuid',
+        type: 9,
+        flags: 2080,
+        indexId: const obx_int.IdUid(2, 4253858227692292599),
+      ),
+      obx_int.ModelProperty(
+        id: const obx_int.IdUid(3, 3391370967580597553),
+        name: 'name',
+        type: 9,
+        flags: 0,
+      ),
+      obx_int.ModelProperty(
+        id: const obx_int.IdUid(4, 5544450938320414791),
+        name: 'shortName',
+        type: 9,
+        flags: 0,
+      ),
+      obx_int.ModelProperty(
+        id: const obx_int.IdUid(5, 2515806353101080638),
+        name: 'icon',
+        type: 9,
+        flags: 0,
+      ),
+      obx_int.ModelProperty(
+        id: const obx_int.IdUid(6, 5194109957362447298),
+        name: 'order',
+        type: 6,
+        flags: 0,
+      ),
+      obx_int.ModelProperty(
+        id: const obx_int.IdUid(7, 5566312069826141901),
+        name: 'isActive',
+        type: 1,
+        flags: 0,
+      ),
+      obx_int.ModelProperty(
+        id: const obx_int.IdUid(8, 3091497373448282662),
+        name: 'createdAt',
+        type: 10,
+        flags: 0,
+      ),
+      obx_int.ModelProperty(
+        id: const obx_int.IdUid(9, 8387502678807559570),
+        name: 'updatedAt',
+        type: 10,
+        flags: 0,
+      ),
+      obx_int.ModelProperty(
+        id: const obx_int.IdUid(10, 7035181120045723205),
+        name: 'version',
+        type: 6,
+        flags: 8,
+        indexId: const obx_int.IdUid(3, 1490201151383398014),
+      ),
+    ],
+    relations: <obx_int.ModelRelation>[],
+    backlinks: <obx_int.ModelBacklink>[],
+  ),
+  obx_int.ModelEntity(
+    id: const obx_int.IdUid(5, 4417818075074321164),
+    name: 'HabitEntry',
+    lastPropertyId: const obx_int.IdUid(8, 3011726055990046336),
+    flags: 0,
+    properties: <obx_int.ModelProperty>[
+      obx_int.ModelProperty(
+        id: const obx_int.IdUid(1, 7891407200364196102),
+        name: 'id',
+        type: 6,
+        flags: 1,
+      ),
+      obx_int.ModelProperty(
+        id: const obx_int.IdUid(2, 5488735850364754476),
+        name: 'habitUuid',
+        type: 9,
+        flags: 2048,
+        indexId: const obx_int.IdUid(4, 5534035390791325606),
+      ),
+      obx_int.ModelProperty(
+        id: const obx_int.IdUid(3, 3138586839929052993),
+        name: 'dayKey',
+        type: 6,
+        flags: 8,
+        indexId: const obx_int.IdUid(5, 8092946732516018159),
+      ),
+      obx_int.ModelProperty(
+        id: const obx_int.IdUid(4, 9177308615763669525),
+        name: 'completed',
+        type: 1,
+        flags: 0,
+      ),
+      obx_int.ModelProperty(
+        id: const obx_int.IdUid(5, 557827455649433579),
+        name: 'completedAt',
+        type: 10,
+        flags: 0,
+      ),
+      obx_int.ModelProperty(
+        id: const obx_int.IdUid(6, 1475311851163937308),
+        name: 'source',
+        type: 9,
+        flags: 0,
+      ),
+      obx_int.ModelProperty(
+        id: const obx_int.IdUid(7, 6798920654016384770),
+        name: 'updatedAt',
+        type: 10,
+        flags: 0,
+      ),
+      obx_int.ModelProperty(
+        id: const obx_int.IdUid(8, 3011726055990046336),
+        name: 'syncedToCloud',
+        type: 1,
+        flags: 0,
+      ),
+    ],
+    relations: <obx_int.ModelRelation>[],
+    backlinks: <obx_int.ModelBacklink>[],
+  ),
 ];
 
 /// Shortcut for [obx.Store.new] that passes [getObjectBoxModel] and for Flutter
@@ -157,8 +357,8 @@ obx_int.ModelDefinition getObjectBoxModel() {
     // Typically, this is done with `dart run build_runner build`.
     generatorVersion: obx_int.GeneratorVersion.v2025_12_16,
     entities: _entities,
-    lastEntityId: const obx_int.IdUid(2, 3449348313109847874),
-    lastIndexId: const obx_int.IdUid(0, 0),
+    lastEntityId: const obx_int.IdUid(5, 4417818075074321164),
+    lastIndexId: const obx_int.IdUid(5, 8092946732516018159),
     lastRelationId: const obx_int.IdUid(0, 0),
     lastSequenceId: const obx_int.IdUid(0, 0),
     retiredEntityUids: const [],
@@ -289,6 +489,268 @@ obx_int.ModelDefinition getObjectBoxModel() {
         return object;
       },
     ),
+    DayStats: obx_int.EntityDefinition<DayStats>(
+      model: _entities[2],
+      toOneRelations: (DayStats object) => [],
+      toManyRelations: (DayStats object) => {},
+      getId: (DayStats object) => object.id,
+      setId: (DayStats object, int id) {
+        object.id = id;
+      },
+      objectToFB: (DayStats object, fb.Builder fbb) {
+        fbb.startTable(10);
+        fbb.addInt64(0, object.id);
+        fbb.addInt64(1, object.dayKey);
+        fbb.addInt64(2, object.steps);
+        fbb.addInt64(3, object.stepGoal);
+        fbb.addInt64(4, object.streakDays);
+        fbb.addInt64(5, object.habitsCompleted);
+        fbb.addInt64(6, object.habitsTotal);
+        fbb.addInt64(7, object.updatedAt.millisecondsSinceEpoch);
+        fbb.addBool(8, object.syncedToCloud);
+        fbb.finish(fbb.endTable());
+        return object.id;
+      },
+      objectFromFB: (obx.Store store, ByteData fbData) {
+        final buffer = fb.BufferContext(fbData);
+        final rootOffset = buffer.derefObject(0);
+        final idParam = const fb.Int64Reader().vTableGet(
+          buffer,
+          rootOffset,
+          4,
+          0,
+        );
+        final dayKeyParam = const fb.Int64Reader().vTableGet(
+          buffer,
+          rootOffset,
+          6,
+          0,
+        );
+        final stepsParam = const fb.Int64Reader().vTableGet(
+          buffer,
+          rootOffset,
+          8,
+          0,
+        );
+        final stepGoalParam = const fb.Int64Reader().vTableGet(
+          buffer,
+          rootOffset,
+          10,
+          0,
+        );
+        final streakDaysParam = const fb.Int64Reader().vTableGet(
+          buffer,
+          rootOffset,
+          12,
+          0,
+        );
+        final habitsCompletedParam = const fb.Int64Reader().vTableGet(
+          buffer,
+          rootOffset,
+          14,
+          0,
+        );
+        final habitsTotalParam = const fb.Int64Reader().vTableGet(
+          buffer,
+          rootOffset,
+          16,
+          0,
+        );
+        final updatedAtParam = DateTime.fromMillisecondsSinceEpoch(
+          const fb.Int64Reader().vTableGet(buffer, rootOffset, 18, 0),
+        );
+        final syncedToCloudParam = const fb.BoolReader().vTableGet(
+          buffer,
+          rootOffset,
+          20,
+          false,
+        );
+        final object = DayStats(
+          id: idParam,
+          dayKey: dayKeyParam,
+          steps: stepsParam,
+          stepGoal: stepGoalParam,
+          streakDays: streakDaysParam,
+          habitsCompleted: habitsCompletedParam,
+          habitsTotal: habitsTotalParam,
+          updatedAt: updatedAtParam,
+          syncedToCloud: syncedToCloudParam,
+        );
+
+        return object;
+      },
+    ),
+    Habit: obx_int.EntityDefinition<Habit>(
+      model: _entities[3],
+      toOneRelations: (Habit object) => [],
+      toManyRelations: (Habit object) => {},
+      getId: (Habit object) => object.id,
+      setId: (Habit object, int id) {
+        object.id = id;
+      },
+      objectToFB: (Habit object, fb.Builder fbb) {
+        final uuidOffset = fbb.writeString(object.uuid);
+        final nameOffset = fbb.writeString(object.name);
+        final shortNameOffset = fbb.writeString(object.shortName);
+        final iconOffset = object.icon == null
+            ? null
+            : fbb.writeString(object.icon!);
+        fbb.startTable(11);
+        fbb.addInt64(0, object.id);
+        fbb.addOffset(1, uuidOffset);
+        fbb.addOffset(2, nameOffset);
+        fbb.addOffset(3, shortNameOffset);
+        fbb.addOffset(4, iconOffset);
+        fbb.addInt64(5, object.order);
+        fbb.addBool(6, object.isActive);
+        fbb.addInt64(7, object.createdAt.millisecondsSinceEpoch);
+        fbb.addInt64(8, object.updatedAt.millisecondsSinceEpoch);
+        fbb.addInt64(9, object.version);
+        fbb.finish(fbb.endTable());
+        return object.id;
+      },
+      objectFromFB: (obx.Store store, ByteData fbData) {
+        final buffer = fb.BufferContext(fbData);
+        final rootOffset = buffer.derefObject(0);
+        final idParam = const fb.Int64Reader().vTableGet(
+          buffer,
+          rootOffset,
+          4,
+          0,
+        );
+        final uuidParam = const fb.StringReader(
+          asciiOptimization: true,
+        ).vTableGet(buffer, rootOffset, 6, '');
+        final nameParam = const fb.StringReader(
+          asciiOptimization: true,
+        ).vTableGet(buffer, rootOffset, 8, '');
+        final shortNameParam = const fb.StringReader(
+          asciiOptimization: true,
+        ).vTableGet(buffer, rootOffset, 10, '');
+        final iconParam = const fb.StringReader(
+          asciiOptimization: true,
+        ).vTableGetNullable(buffer, rootOffset, 12);
+        final orderParam = const fb.Int64Reader().vTableGet(
+          buffer,
+          rootOffset,
+          14,
+          0,
+        );
+        final isActiveParam = const fb.BoolReader().vTableGet(
+          buffer,
+          rootOffset,
+          16,
+          false,
+        );
+        final createdAtParam = DateTime.fromMillisecondsSinceEpoch(
+          const fb.Int64Reader().vTableGet(buffer, rootOffset, 18, 0),
+        );
+        final updatedAtParam = DateTime.fromMillisecondsSinceEpoch(
+          const fb.Int64Reader().vTableGet(buffer, rootOffset, 20, 0),
+        );
+        final versionParam = const fb.Int64Reader().vTableGet(
+          buffer,
+          rootOffset,
+          22,
+          0,
+        );
+        final object = Habit(
+          id: idParam,
+          uuid: uuidParam,
+          name: nameParam,
+          shortName: shortNameParam,
+          icon: iconParam,
+          order: orderParam,
+          isActive: isActiveParam,
+          createdAt: createdAtParam,
+          updatedAt: updatedAtParam,
+          version: versionParam,
+        );
+
+        return object;
+      },
+    ),
+    HabitEntry: obx_int.EntityDefinition<HabitEntry>(
+      model: _entities[4],
+      toOneRelations: (HabitEntry object) => [],
+      toManyRelations: (HabitEntry object) => {},
+      getId: (HabitEntry object) => object.id,
+      setId: (HabitEntry object, int id) {
+        object.id = id;
+      },
+      objectToFB: (HabitEntry object, fb.Builder fbb) {
+        final habitUuidOffset = fbb.writeString(object.habitUuid);
+        final sourceOffset = fbb.writeString(object.source);
+        fbb.startTable(9);
+        fbb.addInt64(0, object.id);
+        fbb.addOffset(1, habitUuidOffset);
+        fbb.addInt64(2, object.dayKey);
+        fbb.addBool(3, object.completed);
+        fbb.addInt64(4, object.completedAt?.millisecondsSinceEpoch);
+        fbb.addOffset(5, sourceOffset);
+        fbb.addInt64(6, object.updatedAt.millisecondsSinceEpoch);
+        fbb.addBool(7, object.syncedToCloud);
+        fbb.finish(fbb.endTable());
+        return object.id;
+      },
+      objectFromFB: (obx.Store store, ByteData fbData) {
+        final buffer = fb.BufferContext(fbData);
+        final rootOffset = buffer.derefObject(0);
+        final completedAtValue = const fb.Int64Reader().vTableGetNullable(
+          buffer,
+          rootOffset,
+          12,
+        );
+        final idParam = const fb.Int64Reader().vTableGet(
+          buffer,
+          rootOffset,
+          4,
+          0,
+        );
+        final habitUuidParam = const fb.StringReader(
+          asciiOptimization: true,
+        ).vTableGet(buffer, rootOffset, 6, '');
+        final dayKeyParam = const fb.Int64Reader().vTableGet(
+          buffer,
+          rootOffset,
+          8,
+          0,
+        );
+        final completedParam = const fb.BoolReader().vTableGet(
+          buffer,
+          rootOffset,
+          10,
+          false,
+        );
+        final completedAtParam = completedAtValue == null
+            ? null
+            : DateTime.fromMillisecondsSinceEpoch(completedAtValue);
+        final sourceParam = const fb.StringReader(
+          asciiOptimization: true,
+        ).vTableGet(buffer, rootOffset, 14, '');
+        final updatedAtParam = DateTime.fromMillisecondsSinceEpoch(
+          const fb.Int64Reader().vTableGet(buffer, rootOffset, 16, 0),
+        );
+        final syncedToCloudParam = const fb.BoolReader().vTableGet(
+          buffer,
+          rootOffset,
+          18,
+          false,
+        );
+        final object = HabitEntry(
+          id: idParam,
+          habitUuid: habitUuidParam,
+          dayKey: dayKeyParam,
+          completed: completedParam,
+          completedAt: completedAtParam,
+          source: sourceParam,
+          updatedAt: updatedAtParam,
+          syncedToCloud: syncedToCloudParam,
+        );
+
+        return object;
+      },
+    ),
   };
 
   return obx_int.ModelDefinition(model, bindings);
@@ -357,5 +819,147 @@ class RawTelemetry_ {
   /// See [RawTelemetry.magZ].
   static final magZ = obx.QueryDoubleProperty<RawTelemetry>(
     _entities[1].properties[6],
+  );
+}
+
+/// [DayStats] entity fields to define ObjectBox queries.
+class DayStats_ {
+  /// See [DayStats.id].
+  static final id = obx.QueryIntegerProperty<DayStats>(
+    _entities[2].properties[0],
+  );
+
+  /// See [DayStats.dayKey].
+  static final dayKey = obx.QueryIntegerProperty<DayStats>(
+    _entities[2].properties[1],
+  );
+
+  /// See [DayStats.steps].
+  static final steps = obx.QueryIntegerProperty<DayStats>(
+    _entities[2].properties[2],
+  );
+
+  /// See [DayStats.stepGoal].
+  static final stepGoal = obx.QueryIntegerProperty<DayStats>(
+    _entities[2].properties[3],
+  );
+
+  /// See [DayStats.streakDays].
+  static final streakDays = obx.QueryIntegerProperty<DayStats>(
+    _entities[2].properties[4],
+  );
+
+  /// See [DayStats.habitsCompleted].
+  static final habitsCompleted = obx.QueryIntegerProperty<DayStats>(
+    _entities[2].properties[5],
+  );
+
+  /// See [DayStats.habitsTotal].
+  static final habitsTotal = obx.QueryIntegerProperty<DayStats>(
+    _entities[2].properties[6],
+  );
+
+  /// See [DayStats.updatedAt].
+  static final updatedAt = obx.QueryDateProperty<DayStats>(
+    _entities[2].properties[7],
+  );
+
+  /// See [DayStats.syncedToCloud].
+  static final syncedToCloud = obx.QueryBooleanProperty<DayStats>(
+    _entities[2].properties[8],
+  );
+}
+
+/// [Habit] entity fields to define ObjectBox queries.
+class Habit_ {
+  /// See [Habit.id].
+  static final id = obx.QueryIntegerProperty<Habit>(_entities[3].properties[0]);
+
+  /// See [Habit.uuid].
+  static final uuid = obx.QueryStringProperty<Habit>(
+    _entities[3].properties[1],
+  );
+
+  /// See [Habit.name].
+  static final name = obx.QueryStringProperty<Habit>(
+    _entities[3].properties[2],
+  );
+
+  /// See [Habit.shortName].
+  static final shortName = obx.QueryStringProperty<Habit>(
+    _entities[3].properties[3],
+  );
+
+  /// See [Habit.icon].
+  static final icon = obx.QueryStringProperty<Habit>(
+    _entities[3].properties[4],
+  );
+
+  /// See [Habit.order].
+  static final order = obx.QueryIntegerProperty<Habit>(
+    _entities[3].properties[5],
+  );
+
+  /// See [Habit.isActive].
+  static final isActive = obx.QueryBooleanProperty<Habit>(
+    _entities[3].properties[6],
+  );
+
+  /// See [Habit.createdAt].
+  static final createdAt = obx.QueryDateProperty<Habit>(
+    _entities[3].properties[7],
+  );
+
+  /// See [Habit.updatedAt].
+  static final updatedAt = obx.QueryDateProperty<Habit>(
+    _entities[3].properties[8],
+  );
+
+  /// See [Habit.version].
+  static final version = obx.QueryIntegerProperty<Habit>(
+    _entities[3].properties[9],
+  );
+}
+
+/// [HabitEntry] entity fields to define ObjectBox queries.
+class HabitEntry_ {
+  /// See [HabitEntry.id].
+  static final id = obx.QueryIntegerProperty<HabitEntry>(
+    _entities[4].properties[0],
+  );
+
+  /// See [HabitEntry.habitUuid].
+  static final habitUuid = obx.QueryStringProperty<HabitEntry>(
+    _entities[4].properties[1],
+  );
+
+  /// See [HabitEntry.dayKey].
+  static final dayKey = obx.QueryIntegerProperty<HabitEntry>(
+    _entities[4].properties[2],
+  );
+
+  /// See [HabitEntry.completed].
+  static final completed = obx.QueryBooleanProperty<HabitEntry>(
+    _entities[4].properties[3],
+  );
+
+  /// See [HabitEntry.completedAt].
+  static final completedAt = obx.QueryDateProperty<HabitEntry>(
+    _entities[4].properties[4],
+  );
+
+  /// See [HabitEntry.source].
+  static final source = obx.QueryStringProperty<HabitEntry>(
+    _entities[4].properties[5],
+  );
+
+  /// See [HabitEntry.updatedAt].
+  static final updatedAt = obx.QueryDateProperty<HabitEntry>(
+    _entities[4].properties[6],
+  );
+
+  /// See [HabitEntry.syncedToCloud].
+  static final syncedToCloud = obx.QueryBooleanProperty<HabitEntry>(
+    _entities[4].properties[7],
   );
 }

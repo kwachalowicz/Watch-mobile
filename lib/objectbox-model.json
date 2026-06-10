@@ -80,10 +80,182 @@
         }
       ],
       "relations": []
+    },
+    {
+      "id": "3:70420255524118782",
+      "lastPropertyId": "9:8845519655979280730",
+      "name": "DayStats",
+      "properties": [
+        {
+          "id": "1:6410954514737733209",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:6625269976766718136",
+          "name": "dayKey",
+          "indexId": "1:144346366429394310",
+          "type": 6,
+          "flags": 40
+        },
+        {
+          "id": "3:8086606740923219923",
+          "name": "steps",
+          "type": 6
+        },
+        {
+          "id": "4:5928422138474006970",
+          "name": "stepGoal",
+          "type": 6
+        },
+        {
+          "id": "5:1472561240038421986",
+          "name": "streakDays",
+          "type": 6
+        },
+        {
+          "id": "6:1568325686944465360",
+          "name": "habitsCompleted",
+          "type": 6
+        },
+        {
+          "id": "7:7774833247480232339",
+          "name": "habitsTotal",
+          "type": 6
+        },
+        {
+          "id": "8:2794032726148220327",
+          "name": "updatedAt",
+          "type": 10
+        },
+        {
+          "id": "9:8845519655979280730",
+          "name": "syncedToCloud",
+          "type": 1
+        }
+      ],
+      "relations": []
+    },
+    {
+      "id": "4:2560185205108857067",
+      "lastPropertyId": "10:7035181120045723205",
+      "name": "Habit",
+      "properties": [
+        {
+          "id": "1:2424745193931049061",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:1292606214069913958",
+          "name": "uuid",
+          "indexId": "2:4253858227692292599",
+          "type": 9,
+          "flags": 2080
+        },
+        {
+          "id": "3:3391370967580597553",
+          "name": "name",
+          "type": 9
+        },
+        {
+          "id": "4:5544450938320414791",
+          "name": "shortName",
+          "type": 9
+        },
+        {
+          "id": "5:2515806353101080638",
+          "name": "icon",
+          "type": 9
+        },
+        {
+          "id": "6:5194109957362447298",
+          "name": "order",
+          "type": 6
+        },
+        {
+          "id": "7:5566312069826141901",
+          "name": "isActive",
+          "type": 1
+        },
+        {
+          "id": "8:3091497373448282662",
+          "name": "createdAt",
+          "type": 10
+        },
+        {
+          "id": "9:8387502678807559570",
+          "name": "updatedAt",
+          "type": 10
+        },
+        {
+          "id": "10:7035181120045723205",
+          "name": "version",
+          "indexId": "3:1490201151383398014",
+          "type": 6,
+          "flags": 8
+        }
+      ],
+      "relations": []
+    },
+    {
+      "id": "5:4417818075074321164",
+      "lastPropertyId": "8:3011726055990046336",
+      "name": "HabitEntry",
+      "properties": [
+        {
+          "id": "1:7891407200364196102",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:5488735850364754476",
+          "name": "habitUuid",
+          "indexId": "4:5534035390791325606",
+          "type": 9,
+          "flags": 2048
+        },
+        {
+          "id": "3:3138586839929052993",
+          "name": "dayKey",
+          "indexId": "5:8092946732516018159",
+          "type": 6,
+          "flags": 8
+        },
+        {
+          "id": "4:9177308615763669525",
+          "name": "completed",
+          "type": 1
+        },
+        {
+          "id": "5:557827455649433579",
+          "name": "completedAt",
+          "type": 10
+        },
+        {
+          "id": "6:1475311851163937308",
+          "name": "source",
+          "type": 9
+        },
+        {
+          "id": "7:6798920654016384770",
+          "name": "updatedAt",
+          "type": 10
+        },
+        {
+          "id": "8:3011726055990046336",
+          "name": "syncedToCloud",
+          "type": 1
+        }
+      ],
+      "relations": []
     }
   ],
-  "lastEntityId": "2:3449348313109847874",
-  "lastIndexId": "0:0",
+  "lastEntityId": "5:4417818075074321164",
+  "lastIndexId": "5:8092946732516018159",
   "lastRelationId": "0:0",
   "lastSequenceId": "0:0",
   "modelVersion": 5,
