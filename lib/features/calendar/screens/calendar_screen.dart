@@ -58,10 +58,7 @@ class _CalendarScreenState extends ConsumerState<CalendarScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Kalendarz'),
-        centerTitle: true,
-      ),
+      appBar: AppBar(title: const Text('Kalendarz'), centerTitle: true),
       body: Column(
         children: [
           Card(
@@ -89,15 +86,10 @@ class _CalendarScreenState extends ConsumerState<CalendarScreen> {
                 _loadMonth(focused);
               },
               calendarBuilders: CalendarBuilders(
-                defaultBuilder: (ctx, day, _) => _DayCell(
-                  day: day,
-                  color: _colorForDay(day),
-                ),
-                todayBuilder: (ctx, day, _) => _DayCell(
-                  day: day,
-                  color: _colorForDay(day),
-                  isToday: true,
-                ),
+                defaultBuilder: (ctx, day, _) =>
+                    _DayCell(day: day, color: _colorForDay(day)),
+                todayBuilder: (ctx, day, _) =>
+                    _DayCell(day: day, color: _colorForDay(day), isToday: true),
                 selectedBuilder: (ctx, day, _) => _DayCell(
                   day: day,
                   color: _colorForDay(day),
@@ -145,19 +137,15 @@ class _DayCell extends StatelessWidget {
         color: color,
         shape: BoxShape.circle,
         border: isSelected
-            ? Border.all(
-                color: Theme.of(context).colorScheme.primary,
-                width: 2,
-              )
+            ? Border.all(color: Theme.of(context).colorScheme.primary, width: 2)
             : isToday
-                ? Border.all(
-                    color: Theme.of(context)
-                        .colorScheme
-                        .primary
-                        .withValues(alpha: 0.5),
-                    width: 1.5,
-                  )
-                : null,
+            ? Border.all(
+                color: Theme.of(
+                  context,
+                ).colorScheme.primary.withValues(alpha: 0.5),
+                width: 1.5,
+              )
+            : null,
       ),
       child: Center(
         child: Text(
@@ -182,12 +170,18 @@ class _Legend extends StatelessWidget {
         spacing: 16,
         runSpacing: 4,
         children: [
-          _LegendDot(color: Colors.green.withValues(alpha: 0.7), label: 'Wszystko'),
+          _LegendDot(
+            color: Colors.green.withValues(alpha: 0.7),
+            label: 'Wszystko',
+          ),
           _LegendDot(
             color: Colors.lightGreen.withValues(alpha: 0.5),
             label: '≥ 50%',
           ),
-          _LegendDot(color: Colors.amber.withValues(alpha: 0.5), label: 'Trochę'),
+          _LegendDot(
+            color: Colors.amber.withValues(alpha: 0.5),
+            label: 'Trochę',
+          ),
           _LegendDot(color: Colors.grey.withValues(alpha: 0.25), label: 'Nic'),
         ],
       ),
@@ -242,7 +236,7 @@ class _SelectedDayPreview extends ConsumerWidget {
                 subtitle: Text(
                   s.hasData
                       ? '${s.habitsDone}/${s.habitsTotal} nawyków · '
-                          '${s.steps} kroków'
+                            '${s.steps} kroków'
                       : 'Brak danych',
                 ),
                 trailing: const Icon(Icons.chevron_right),

@@ -32,8 +32,7 @@ class DaySummary {
   /// 0.0 - 1.0; używane do koloru w kalendarzu i do ringów.
   double get habitProgress => habitsTotal == 0 ? 0 : habitsDone / habitsTotal;
 
-  double get stepProgress =>
-      stepGoal == 0 ? 0 : (steps / stepGoal).clamp(0, 1);
+  double get stepProgress => stepGoal == 0 ? 0 : (steps / stepGoal).clamp(0, 1);
 
   bool get isToday => dayKey == DayKey.today();
   bool get hasData => habitsTotal > 0 || steps > 0;
@@ -44,7 +43,8 @@ class HabitRepository {
   final ObjectBoxService _obx;
   final _uuid = const Uuid();
 
-  HabitRepository({ObjectBoxService? obx}) : _obx = obx ?? ObjectBoxService.instance;
+  HabitRepository({ObjectBoxService? obx})
+    : _obx = obx ?? ObjectBoxService.instance;
 
   Box<Habit> get _habits => _obx.habitBox;
   Box<HabitEntry> get _entries => _obx.habitEntryBox;
@@ -129,9 +129,11 @@ class HabitRepository {
     // Para (habitUuid, dayKey) jest logicznie unikalna - egzekwujemy ręcznie:
     // znajdź istniejący wpis i nadpisz reuse'ując jego id.
     final q = _entries
-        .query(HabitEntry_.habitUuid
-            .equals(habitUuid)
-            .and(HabitEntry_.dayKey.equals(dayKey)))
+        .query(
+          HabitEntry_.habitUuid
+              .equals(habitUuid)
+              .and(HabitEntry_.dayKey.equals(dayKey)),
+        )
         .build();
     final HabitEntry? existing;
     try {
@@ -140,7 +142,8 @@ class HabitRepository {
       q.close();
     }
 
-    final entry = existing ??
+    final entry =
+        existing ??
         HabitEntry(
           habitUuid: habitUuid,
           dayKey: dayKey,
@@ -171,9 +174,13 @@ class HabitRepository {
   }
 
   /// Wszystkie zaliczenia w zakresie dni - do widoku miesięcznego.
-  Future<List<HabitEntry>> getEntriesInRange(int fromDayKey, int toDayKey) async {
-    final q =
-        _entries.query(HabitEntry_.dayKey.between(fromDayKey, toDayKey)).build();
+  Future<List<HabitEntry>> getEntriesInRange(
+    int fromDayKey,
+    int toDayKey,
+  ) async {
+    final q = _entries
+        .query(HabitEntry_.dayKey.between(fromDayKey, toDayKey))
+        .build();
     try {
       return q.find();
     } finally {
@@ -199,7 +206,8 @@ class HabitRepository {
       q.close();
     }
 
-    final stats = existing ??
+    final stats =
+        existing ??
         DayStats(
           dayKey: dayKey,
           steps: steps,
@@ -240,9 +248,9 @@ class HabitRepository {
         .query(DayStats_.dayKey.equals(today))
         .watch(triggerImmediately: true)
         .map((q) {
-      final list = q.find();
-      return list.isEmpty ? null : list.first;
-    });
+          final list = q.find();
+          return list.isEmpty ? null : list.first;
+        });
   }
 
   // ─── AGREGACJE (dla UI) ────────────────────────────────────────────
@@ -276,8 +284,7 @@ class HabitRepository {
 
     final entries = await getEntriesInRange(from, to);
 
-    final statsQuery =
-        _stats.query(DayStats_.dayKey.between(from, to)).build();
+    final statsQuery = _stats.query(DayStats_.dayKey.between(from, to)).build();
     final List<DayStats> stats;
     try {
       stats = statsQuery.find();

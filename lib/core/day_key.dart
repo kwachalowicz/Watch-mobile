@@ -21,7 +21,8 @@ class DayKey {
   }
 
   /// Pierwszy dzień miesiąca jako dayKey.
-  static int firstOfMonth(int year, int month) => year * 10000 + month * 100 + 1;
+  static int firstOfMonth(int year, int month) =>
+      year * 10000 + month * 100 + 1;
 
   /// Ostatni dzień miesiąca jako dayKey.
   static int lastOfMonth(int year, int month) {

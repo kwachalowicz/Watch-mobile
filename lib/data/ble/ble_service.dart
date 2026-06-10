@@ -74,9 +74,10 @@ class BleService {
 
     yield* FlutterBluePlus.onScanResults.map((results) {
       return results
-          .where((r) => r.device.platformName.startsWith(
-                BleConstants.deviceNamePrefix,
-              ))
+          .where(
+            (r) =>
+                r.device.platformName.startsWith(BleConstants.deviceNamePrefix),
+          )
           .toList();
     });
   }

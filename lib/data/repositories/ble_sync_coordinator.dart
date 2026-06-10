@@ -17,11 +17,9 @@ class BleSyncCoordinator {
 
   StreamSubscription<IncomingMessage>? _msgSub;
 
-  BleSyncCoordinator({
-    required BleService ble,
-    required HabitRepository habits,
-  })  : _ble = ble,
-        _habits = habits;
+  BleSyncCoordinator({required BleService ble, required HabitRepository habits})
+    : _ble = ble,
+      _habits = habits;
 
   /// Wystartuj nasłuchiwanie. Wołać raz po połączeniu z zegarkiem.
   void start() {
@@ -105,11 +103,9 @@ class BleSyncCoordinator {
   Future<void> pushAllHabits() async {
     final habits = await _habits.getActiveHabits();
     final payload = habits
-        .map((h) => {
-              'uuid': h.uuid,
-              'shortName': h.shortName,
-              'order': h.order,
-            })
+        .map(
+          (h) => {'uuid': h.uuid, 'shortName': h.shortName, 'order': h.order},
+        )
         .toList();
 
     await _ble.send(OutgoingMessage.habitsPush(payload));

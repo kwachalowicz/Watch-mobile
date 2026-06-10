@@ -25,8 +25,22 @@ class RingsPainter extends CustomPainter {
     final outerRadius = size.shortestSide / 2 - strokeWidth / 2;
     final innerRadius = outerRadius - strokeWidth - 4;
 
-    _drawRing(canvas, center, outerRadius, _stepsColor, _stepsTrack, stepsProgress);
-    _drawRing(canvas, center, innerRadius, _habitsColor, _habitsTrack, habitsProgress);
+    _drawRing(
+      canvas,
+      center,
+      outerRadius,
+      _stepsColor,
+      _stepsTrack,
+      stepsProgress,
+    );
+    _drawRing(
+      canvas,
+      center,
+      innerRadius,
+      _habitsColor,
+      _habitsTrack,
+      habitsProgress,
+    );
   }
 
   void _drawRing(

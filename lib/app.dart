@@ -27,7 +27,9 @@ class PenguinTrackerApp extends ConsumerWidget {
           routes: [
             GoRoute(path: '/home', builder: (_, _) => const HomeScreen()),
             GoRoute(
-                path: '/calendar', builder: (_, _) => const CalendarScreen()),
+              path: '/calendar',
+              builder: (_, _) => const CalendarScreen(),
+            ),
             GoRoute(path: '/habits', builder: (_, _) => const HabitsScreen()),
             GoRoute(path: '/device', builder: (_, _) => const DeviceScreen()),
           ],
@@ -40,9 +42,8 @@ class PenguinTrackerApp extends ConsumerWidget {
         ),
         GoRoute(
           path: '/habits/edit/:uuid',
-          builder: (_, state) => HabitEditScreen(
-            habitUuid: state.pathParameters['uuid'],
-          ),
+          builder: (_, state) =>
+              HabitEditScreen(habitUuid: state.pathParameters['uuid']),
         ),
         GoRoute(
           path: '/habits/new',

@@ -13,9 +13,7 @@ class HabitsScreen extends ConsumerWidget {
     final habitsAsync = ref.watch(activeHabitsProvider);
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Moje nawyki'),
-      ),
+      appBar: AppBar(title: const Text('Moje nawyki')),
       body: habitsAsync.when(
         loading: () => const Center(child: CircularProgressIndicator()),
         error: (e, _) => Center(child: Text('Błąd: $e')),
@@ -77,13 +75,12 @@ class _EmptyState extends StatelessWidget {
             Icon(
               Icons.checklist_rounded,
               size: 64,
-              color: Theme.of(context).colorScheme.primary.withValues(alpha: 0.4),
+              color: Theme.of(
+                context,
+              ).colorScheme.primary.withValues(alpha: 0.4),
             ),
             const SizedBox(height: 16),
-            Text(
-              'Brak nawyków',
-              style: Theme.of(context).textTheme.titleLarge,
-            ),
+            Text('Brak nawyków', style: Theme.of(context).textTheme.titleLarge),
             const SizedBox(height: 8),
             Text(
               'Dodaj pierwszy nawyk - pojawi się jako checkbox na zegarku.',

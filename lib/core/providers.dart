@@ -70,8 +70,10 @@ final bleAutoSyncProvider = Provider<void>((ref) {
 // ─── AGREGOWANE WIDOKI (dla ekranów Home i Day detail) ─────────────
 
 /// Pełne podsumowanie konkretnego dnia. Family - parametryzowane dayKey.
-final daySummaryProvider =
-    FutureProvider.family<DaySummary, int>((ref, dayKey) async {
+final daySummaryProvider = FutureProvider.family<DaySummary, int>((
+  ref,
+  dayKey,
+) async {
   // Inwaliduj gdy zmienią się nawyki, today stats, albo aktywne habity.
   ref.watch(todayStatsProvider);
   ref.watch(activeHabitsProvider);

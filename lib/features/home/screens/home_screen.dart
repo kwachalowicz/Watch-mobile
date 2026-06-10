@@ -17,10 +17,7 @@ class HomeScreen extends ConsumerWidget {
     final summaryAsync = ref.watch(todaySummaryProvider);
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Dzisiaj'),
-        centerTitle: true,
-      ),
+      appBar: AppBar(title: const Text('Dzisiaj'), centerTitle: true),
       body: summaryAsync.when(
         loading: () => const Center(child: CircularProgressIndicator()),
         error: (e, _) => Center(child: Text('Błąd: $e')),
@@ -66,10 +63,7 @@ class _HomeContent extends ConsumerWidget {
                 FractionallySizedBox(
                   widthFactor: 0.55,
                   heightFactor: 0.55,
-                  child: AnimatedPenguin(
-                    mood: mood,
-                    size: 200,
-                  ),
+                  child: AnimatedPenguin(mood: mood, size: 200),
                 ),
               ],
             ),
@@ -134,9 +128,9 @@ class _StreakBadge extends StatelessWidget {
           const SizedBox(width: 8),
           Text(
             '$days dni z rzędu',
-            style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                  fontWeight: FontWeight.w600,
-                ),
+            style: Theme.of(
+              context,
+            ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w600),
           ),
         ],
       ),
@@ -169,10 +163,7 @@ class _StatCard extends StatelessWidget {
           children: [
             Icon(icon, color: color, size: 28),
             const SizedBox(height: 8),
-            Text(
-              label,
-              style: Theme.of(context).textTheme.bodySmall,
-            ),
+            Text(label, style: Theme.of(context).textTheme.bodySmall),
             const SizedBox(height: 4),
             Row(
               crossAxisAlignment: CrossAxisAlignment.baseline,
@@ -181,14 +172,11 @@ class _StatCard extends StatelessWidget {
                 Text(
                   value,
                   style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                        fontWeight: FontWeight.w600,
-                      ),
+                    fontWeight: FontWeight.w600,
+                  ),
                 ),
                 const SizedBox(width: 4),
-                Text(
-                  goal,
-                  style: Theme.of(context).textTheme.bodySmall,
-                ),
+                Text(goal, style: Theme.of(context).textTheme.bodySmall),
               ],
             ),
           ],
@@ -250,7 +238,9 @@ class _TodayHabitsList extends ConsumerWidget {
                     h.name,
                     style: done
                         ? TextStyle(
-                            color: Theme.of(context).colorScheme.onSurfaceVariant,
+                            color: Theme.of(
+                              context,
+                            ).colorScheme.onSurfaceVariant,
                             decoration: TextDecoration.lineThrough,
                           )
                         : null,

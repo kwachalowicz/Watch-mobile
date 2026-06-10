@@ -21,10 +21,7 @@ class DayDetailScreen extends ConsumerWidget {
       body: summaryAsync.when(
         loading: () => const Center(child: CircularProgressIndicator()),
         error: (e, _) => Center(child: Text('Błąd: $e')),
-        data: (s) => _DayDetail(
-          summary: s,
-          habits: habitsAsync.value ?? [],
-        ),
+        data: (s) => _DayDetail(summary: s, habits: habitsAsync.value ?? []),
       ),
     );
   }
@@ -49,9 +46,7 @@ class _DayDetail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final entriesByUuid = {
-      for (final e in summary.entries) e.habitUuid: e,
-    };
+    final entriesByUuid = {for (final e in summary.entries) e.habitUuid: e};
 
     return SingleChildScrollView(
       padding: const EdgeInsets.all(16),
@@ -159,9 +154,7 @@ class _DayDetail extends StatelessWidget {
                   final done = entry?.completed ?? false;
                   return ListTile(
                     leading: Icon(
-                      done
-                          ? Icons.check_circle_rounded
-                          : Icons.cancel_outlined,
+                      done ? Icons.check_circle_rounded : Icons.cancel_outlined,
                       color: done ? Colors.green : Colors.grey,
                     ),
                     title: Text(h.name),
@@ -216,15 +209,12 @@ class _StatRow extends StatelessWidget {
           children: [
             Text(
               value,
-              style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                    fontWeight: FontWeight.w600,
-                  ),
+              style: Theme.of(
+                context,
+              ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w600),
             ),
             if (secondary != null)
-              Text(
-                secondary!,
-                style: Theme.of(context).textTheme.bodySmall,
-              ),
+              Text(secondary!, style: Theme.of(context).textTheme.bodySmall),
           ],
         ),
       ),

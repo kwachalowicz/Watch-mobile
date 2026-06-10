@@ -54,10 +54,7 @@ class IncomingMessage {
   IncomingMessage(this.type, this.raw);
 
   factory IncomingMessage.fromJson(Map<String, dynamic> json) {
-    return IncomingMessage(
-      BleMessageType.fromCode(json['t'] as String?),
-      json,
-    );
+    return IncomingMessage(BleMessageType.fromCode(json['t'] as String?), json);
   }
 }
 
@@ -76,7 +73,10 @@ class OutgoingMessage {
   /// Jeśli payload za duży - dzielimy na batche w warstwie wyżej.
   static String habitsPush(List<Map<String, dynamic>> habits) {
     final list = habits
-        .map((h) => '{"u":"${h['uuid']}","n":"${h['shortName']}","o":${h['order']}}')
+        .map(
+          (h) =>
+              '{"u":"${h['uuid']}","n":"${h['shortName']}","o":${h['order']}}',
+        )
         .join(',');
     return '{"t":"habitsPush","habits":[$list]}\n';
   }

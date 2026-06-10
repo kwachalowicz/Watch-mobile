@@ -51,9 +51,7 @@ class _DeviceScreenState extends ConsumerState<DeviceScreen> {
     ].request();
 
     setState(() {
-      _permissionsOk = statuses.values.every(
-        (s) => s.isGranted || s.isLimited,
-      );
+      _permissionsOk = statuses.values.every((s) => s.isGranted || s.isLimited);
     });
   }
 
@@ -92,9 +90,9 @@ class _DeviceScreenState extends ConsumerState<DeviceScreen> {
       }
     } catch (e) {
       if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Błąd połączenia: $e')),
-        );
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(SnackBar(content: Text('Błąd połączenia: $e')));
       }
     }
   }
@@ -217,30 +215,30 @@ class _ConnectionStatusCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final (icon, label, color) = switch (state) {
       BangleConnectionState.disconnected => (
-          Icons.bluetooth_disabled_rounded,
-          'Niepołączony',
-          Theme.of(context).colorScheme.surfaceContainerHighest,
-        ),
+        Icons.bluetooth_disabled_rounded,
+        'Niepołączony',
+        Theme.of(context).colorScheme.surfaceContainerHighest,
+      ),
       BangleConnectionState.scanning => (
-          Icons.bluetooth_searching_rounded,
-          'Skanowanie...',
-          Theme.of(context).colorScheme.tertiaryContainer,
-        ),
+        Icons.bluetooth_searching_rounded,
+        'Skanowanie...',
+        Theme.of(context).colorScheme.tertiaryContainer,
+      ),
       BangleConnectionState.connecting => (
-          Icons.bluetooth_connected_rounded,
-          'Łączenie...',
-          Theme.of(context).colorScheme.tertiaryContainer,
-        ),
+        Icons.bluetooth_connected_rounded,
+        'Łączenie...',
+        Theme.of(context).colorScheme.tertiaryContainer,
+      ),
       BangleConnectionState.connected => (
-          Icons.bluetooth_connected_rounded,
-          'Połączono${deviceName != null ? ': $deviceName' : ''}',
-          Theme.of(context).colorScheme.primaryContainer,
-        ),
+        Icons.bluetooth_connected_rounded,
+        'Połączono${deviceName != null ? ': $deviceName' : ''}',
+        Theme.of(context).colorScheme.primaryContainer,
+      ),
       BangleConnectionState.error => (
-          Icons.error_outline_rounded,
-          'Błąd połączenia',
-          Theme.of(context).colorScheme.errorContainer,
-        ),
+        Icons.error_outline_rounded,
+        'Błąd połączenia',
+        Theme.of(context).colorScheme.errorContainer,
+      ),
     };
 
     return Padding(

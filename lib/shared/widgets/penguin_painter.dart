@@ -28,10 +28,7 @@ class PenguinPainter extends CustomPainter {
   void paint(Canvas canvas, Size size) {
     // Skala - bazowy projekt jest na 100×100 jednostek wewnętrznych.
     final s = size.shortestSide / 100;
-    canvas.translate(
-      (size.width - 100 * s) / 2,
-      (size.height - 100 * s) / 2,
-    );
+    canvas.translate((size.width - 100 * s) / 2, (size.height - 100 * s) / 2);
     canvas.scale(s);
 
     final paint = Paint();
@@ -127,11 +124,7 @@ class AnimatedPenguin extends StatefulWidget {
   final PenguinMood mood;
   final double size;
 
-  const AnimatedPenguin({
-    super.key,
-    required this.mood,
-    this.size = 120,
-  });
+  const AnimatedPenguin({super.key, required this.mood, this.size = 120});
 
   @override
   State<AnimatedPenguin> createState() => _AnimatedPenguinState();
