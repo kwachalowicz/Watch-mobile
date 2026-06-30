@@ -98,7 +98,7 @@ class _HabitEditScreenState extends ConsumerState<HabitEditScreen> {
     await ref.read(habitRepositoryProvider).softDelete(existing);
 
     ref.invalidate(activeHabitsProvider);
-    
+
     if (mounted) context.pop();
   }
 
