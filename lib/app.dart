@@ -3,6 +3,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import 'core/providers.dart';
+import 'features/auth/auth_providers.dart';
+import 'features/auth/screens/login_screen.dart';
+import 'features/auth/screens/register_screen.dart';
 import 'features/calendar/screens/calendar_screen.dart';
 import 'features/device/screens/device_screen.dart';
 import 'features/habits/screens/habit_edit_screen.dart';
@@ -19,9 +22,23 @@ class PenguinTrackerApp extends ConsumerWidget {
     // fallback). ProviderScope trzyma go żywego dopóki app żyje.
     ref.watch(bleAutoSyncProvider);
 
+    final authState = ref.watch(authControllerProvider);
+
     final router = GoRouter(
       initialLocation: '/home',
+      redirect: (context, state) {
+        final loggedIn = authState is AuthAuthenticated;
+        final onAuthRoute =
+            state.matchedLocation == '/login' ||
+            state.matchedLocation == '/register';
+
+        if (!loggedIn && !onAuthRoute) return '/login';
+        if (loggedIn && onAuthRoute) return '/home';
+        return null;
+      },
       routes: [
+        GoRoute(path: '/login', builder: (_, _) => const LoginScreen()),
+        GoRoute(path: '/register', builder: (_, _) => const RegisterScreen()),
         ShellRoute(
           builder: (context, state, child) => _RootShell(child: child),
           routes: [

@@ -15,6 +15,8 @@ import 'package:objectbox/objectbox.dart' as obx;
 import 'package:objectbox_flutter_libs/objectbox_flutter_libs.dart';
 
 import 'data/error_log.dart';
+import 'data/models/app_user.dart';
+import 'data/models/auth_session.dart';
 import 'data/models/day_stats.dart';
 import 'data/models/habit.dart';
 import 'data/models/habit_entry.dart';
@@ -312,6 +314,63 @@ final _entities = <obx_int.ModelEntity>[
     relations: <obx_int.ModelRelation>[],
     backlinks: <obx_int.ModelBacklink>[],
   ),
+  obx_int.ModelEntity(
+    id: const obx_int.IdUid(6, 7764743408012708590),
+    name: 'AppUser',
+    lastPropertyId: const obx_int.IdUid(4, 5193702488597248129),
+    flags: 0,
+    properties: <obx_int.ModelProperty>[
+      obx_int.ModelProperty(
+        id: const obx_int.IdUid(1, 8102390806723534942),
+        name: 'id',
+        type: 6,
+        flags: 1,
+      ),
+      obx_int.ModelProperty(
+        id: const obx_int.IdUid(2, 155980383631755316),
+        name: 'email',
+        type: 9,
+        flags: 2080,
+        indexId: const obx_int.IdUid(6, 2587035254414107848),
+      ),
+      obx_int.ModelProperty(
+        id: const obx_int.IdUid(3, 4516813054781666557),
+        name: 'passwordHash',
+        type: 9,
+        flags: 0,
+      ),
+      obx_int.ModelProperty(
+        id: const obx_int.IdUid(4, 5193702488597248129),
+        name: 'name',
+        type: 9,
+        flags: 0,
+      ),
+    ],
+    relations: <obx_int.ModelRelation>[],
+    backlinks: <obx_int.ModelBacklink>[],
+  ),
+  obx_int.ModelEntity(
+    id: const obx_int.IdUid(7, 749772981281916095),
+    name: 'AuthSession',
+    lastPropertyId: const obx_int.IdUid(2, 923992591380091196),
+    flags: 0,
+    properties: <obx_int.ModelProperty>[
+      obx_int.ModelProperty(
+        id: const obx_int.IdUid(1, 3021926220719832000),
+        name: 'id',
+        type: 6,
+        flags: 1,
+      ),
+      obx_int.ModelProperty(
+        id: const obx_int.IdUid(2, 923992591380091196),
+        name: 'userId',
+        type: 6,
+        flags: 0,
+      ),
+    ],
+    relations: <obx_int.ModelRelation>[],
+    backlinks: <obx_int.ModelBacklink>[],
+  ),
 ];
 
 /// Shortcut for [obx.Store.new] that passes [getObjectBoxModel] and for Flutter
@@ -357,8 +416,8 @@ obx_int.ModelDefinition getObjectBoxModel() {
     // Typically, this is done with `dart run build_runner build`.
     generatorVersion: obx_int.GeneratorVersion.v2025_12_16,
     entities: _entities,
-    lastEntityId: const obx_int.IdUid(5, 4417818075074321164),
-    lastIndexId: const obx_int.IdUid(5, 8092946732516018159),
+    lastEntityId: const obx_int.IdUid(7, 749772981281916095),
+    lastIndexId: const obx_int.IdUid(6, 2587035254414107848),
     lastRelationId: const obx_int.IdUid(0, 0),
     lastSequenceId: const obx_int.IdUid(0, 0),
     retiredEntityUids: const [],
@@ -751,6 +810,90 @@ obx_int.ModelDefinition getObjectBoxModel() {
         return object;
       },
     ),
+    AppUser: obx_int.EntityDefinition<AppUser>(
+      model: _entities[5],
+      toOneRelations: (AppUser object) => [],
+      toManyRelations: (AppUser object) => {},
+      getId: (AppUser object) => object.id,
+      setId: (AppUser object, int id) {
+        object.id = id;
+      },
+      objectToFB: (AppUser object, fb.Builder fbb) {
+        final emailOffset = fbb.writeString(object.email);
+        final passwordHashOffset = fbb.writeString(object.passwordHash);
+        final nameOffset = object.name == null
+            ? null
+            : fbb.writeString(object.name!);
+        fbb.startTable(5);
+        fbb.addInt64(0, object.id);
+        fbb.addOffset(1, emailOffset);
+        fbb.addOffset(2, passwordHashOffset);
+        fbb.addOffset(3, nameOffset);
+        fbb.finish(fbb.endTable());
+        return object.id;
+      },
+      objectFromFB: (obx.Store store, ByteData fbData) {
+        final buffer = fb.BufferContext(fbData);
+        final rootOffset = buffer.derefObject(0);
+        final idParam = const fb.Int64Reader().vTableGet(
+          buffer,
+          rootOffset,
+          4,
+          0,
+        );
+        final emailParam = const fb.StringReader(
+          asciiOptimization: true,
+        ).vTableGet(buffer, rootOffset, 6, '');
+        final passwordHashParam = const fb.StringReader(
+          asciiOptimization: true,
+        ).vTableGet(buffer, rootOffset, 8, '');
+        final nameParam = const fb.StringReader(
+          asciiOptimization: true,
+        ).vTableGetNullable(buffer, rootOffset, 10);
+        final object = AppUser(
+          id: idParam,
+          email: emailParam,
+          passwordHash: passwordHashParam,
+          name: nameParam,
+        );
+
+        return object;
+      },
+    ),
+    AuthSession: obx_int.EntityDefinition<AuthSession>(
+      model: _entities[6],
+      toOneRelations: (AuthSession object) => [],
+      toManyRelations: (AuthSession object) => {},
+      getId: (AuthSession object) => object.id,
+      setId: (AuthSession object, int id) {
+        object.id = id;
+      },
+      objectToFB: (AuthSession object, fb.Builder fbb) {
+        fbb.startTable(3);
+        fbb.addInt64(0, object.id);
+        fbb.addInt64(1, object.userId);
+        fbb.finish(fbb.endTable());
+        return object.id;
+      },
+      objectFromFB: (obx.Store store, ByteData fbData) {
+        final buffer = fb.BufferContext(fbData);
+        final rootOffset = buffer.derefObject(0);
+        final idParam = const fb.Int64Reader().vTableGet(
+          buffer,
+          rootOffset,
+          4,
+          0,
+        );
+        final userIdParam = const fb.Int64Reader().vTableGetNullable(
+          buffer,
+          rootOffset,
+          6,
+        );
+        final object = AuthSession(id: idParam, userId: userIdParam);
+
+        return object;
+      },
+    ),
   };
 
   return obx_int.ModelDefinition(model, bindings);
@@ -961,5 +1104,41 @@ class HabitEntry_ {
   /// See [HabitEntry.syncedToCloud].
   static final syncedToCloud = obx.QueryBooleanProperty<HabitEntry>(
     _entities[4].properties[7],
+  );
+}
+
+/// [AppUser] entity fields to define ObjectBox queries.
+class AppUser_ {
+  /// See [AppUser.id].
+  static final id = obx.QueryIntegerProperty<AppUser>(
+    _entities[5].properties[0],
+  );
+
+  /// See [AppUser.email].
+  static final email = obx.QueryStringProperty<AppUser>(
+    _entities[5].properties[1],
+  );
+
+  /// See [AppUser.passwordHash].
+  static final passwordHash = obx.QueryStringProperty<AppUser>(
+    _entities[5].properties[2],
+  );
+
+  /// See [AppUser.name].
+  static final name = obx.QueryStringProperty<AppUser>(
+    _entities[5].properties[3],
+  );
+}
+
+/// [AuthSession] entity fields to define ObjectBox queries.
+class AuthSession_ {
+  /// See [AuthSession.id].
+  static final id = obx.QueryIntegerProperty<AuthSession>(
+    _entities[6].properties[0],
+  );
+
+  /// See [AuthSession.userId].
+  static final userId = obx.QueryIntegerProperty<AuthSession>(
+    _entities[6].properties[1],
   );
 }

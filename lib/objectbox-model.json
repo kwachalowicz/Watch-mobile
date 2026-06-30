@@ -252,10 +252,60 @@
         }
       ],
       "relations": []
+    },
+    {
+      "id": "6:7764743408012708590",
+      "lastPropertyId": "4:5193702488597248129",
+      "name": "AppUser",
+      "properties": [
+        {
+          "id": "1:8102390806723534942",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:155980383631755316",
+          "name": "email",
+          "indexId": "6:2587035254414107848",
+          "type": 9,
+          "flags": 2080
+        },
+        {
+          "id": "3:4516813054781666557",
+          "name": "passwordHash",
+          "type": 9
+        },
+        {
+          "id": "4:5193702488597248129",
+          "name": "name",
+          "type": 9
+        }
+      ],
+      "relations": []
+    },
+    {
+      "id": "7:749772981281916095",
+      "lastPropertyId": "2:923992591380091196",
+      "name": "AuthSession",
+      "properties": [
+        {
+          "id": "1:3021926220719832000",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:923992591380091196",
+          "name": "userId",
+          "type": 6
+        }
+      ],
+      "relations": []
     }
   ],
-  "lastEntityId": "5:4417818075074321164",
-  "lastIndexId": "5:8092946732516018159",
+  "lastEntityId": "7:749772981281916095",
+  "lastIndexId": "6:2587035254414107848",
   "lastRelationId": "0:0",
   "lastSequenceId": "0:0",
   "modelVersion": 5,
