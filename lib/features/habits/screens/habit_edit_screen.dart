@@ -63,6 +63,8 @@ class _HabitEditScreenState extends ConsumerState<HabitEditScreen> {
       await repo.update(_existing!);
     }
 
+    ref.invalidate(activeHabitsProvider);
+
     if (mounted) context.pop();
   }
 
@@ -94,6 +96,9 @@ class _HabitEditScreenState extends ConsumerState<HabitEditScreen> {
     if (confirmed != true) return;
 
     await ref.read(habitRepositoryProvider).softDelete(existing);
+
+    ref.invalidate(activeHabitsProvider);
+    
     if (mounted) context.pop();
   }
 
