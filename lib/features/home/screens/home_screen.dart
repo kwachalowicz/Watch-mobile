@@ -6,18 +6,52 @@ import '../../../core/providers.dart';
 import '../../../data/repositories/habit_repository.dart';
 import '../../../shared/widgets/penguin_painter.dart';
 import '../../../shared/widgets/rings_painter.dart';
+import '../../auth/auth_providers.dart';
 
 /// Ekran główny - replika 1:1 tego co user widzi na zegarku.
 /// Ringi (kroki + nawyki) → pingwinek w środku → streak pod spodem.
 class HomeScreen extends ConsumerWidget {
   const HomeScreen({super.key});
 
+  Future<void> _confirmLogout(BuildContext context, WidgetRef ref) async {
+    final confirmed = await showDialog<bool>(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text('Wylogować się?'),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(context).pop(false),
+            child: const Text('Anuluj'),
+          ),
+          TextButton(
+            onPressed: () => Navigator.of(context).pop(true),
+            child: const Text('Wyloguj'),
+          ),
+        ],
+      ),
+    );
+    if (confirmed == true) {
+      ref.read(authControllerProvider.notifier).logout();
+      // redirect w app.dart sam przeniesie na /login
+    }
+  }
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final summaryAsync = ref.watch(todaySummaryProvider);
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Dzisiaj'), centerTitle: true),
+      appBar: AppBar(
+        title: const Text('Dzisiaj'),
+        centerTitle: true,
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.logout_rounded),
+            tooltip: 'Wyloguj',
+            onPressed: () => _confirmLogout(context, ref),
+          ),
+        ],
+      ),
       body: summaryAsync.when(
         loading: () => const Center(child: CircularProgressIndicator()),
         error: (e, _) => Center(child: Text('Błąd: $e')),
