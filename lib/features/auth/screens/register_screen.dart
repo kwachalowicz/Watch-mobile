@@ -30,7 +30,9 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
     if (!_formKey.currentState!.validate()) return;
     setState(() => _isLoading = true);
     try {
-      await ref.read(authControllerProvider.notifier).register(
+      await ref
+          .read(authControllerProvider.notifier)
+          .register(
             _emailController.text,
             _passwordController.text,
             name: _nameController.text.isEmpty ? null : _nameController.text,
@@ -60,15 +62,18 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
             children: [
               TextFormField(
                 controller: _nameController,
-                decoration: const InputDecoration(labelText: 'Imię (opcjonalnie)'),
+                decoration: const InputDecoration(
+                  labelText: 'Imię (opcjonalnie)',
+                ),
               ),
               const SizedBox(height: 12),
               TextFormField(
                 controller: _emailController,
                 keyboardType: TextInputType.emailAddress,
                 decoration: const InputDecoration(labelText: 'E-mail'),
-                validator: (v) =>
-                    (v == null || !v.contains('@')) ? 'Podaj poprawny e-mail' : null,
+                validator: (v) => (v == null || !v.contains('@'))
+                    ? 'Podaj poprawny e-mail'
+                    : null,
               ),
               const SizedBox(height: 12),
               TextFormField(

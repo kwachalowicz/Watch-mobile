@@ -28,10 +28,9 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
     if (!_formKey.currentState!.validate()) return;
     setState(() => _isLoading = true);
     try {
-      await ref.read(authControllerProvider.notifier).login(
-            _emailController.text,
-            _passwordController.text,
-          );
+      await ref
+          .read(authControllerProvider.notifier)
+          .login(_emailController.text, _passwordController.text);
     } catch (e) {
       if (mounted) {
         ScaffoldMessenger.of(
@@ -58,8 +57,9 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                 controller: _emailController,
                 keyboardType: TextInputType.emailAddress,
                 decoration: const InputDecoration(labelText: 'E-mail'),
-                validator: (v) =>
-                    (v == null || !v.contains('@')) ? 'Podaj poprawny e-mail' : null,
+                validator: (v) => (v == null || !v.contains('@'))
+                    ? 'Podaj poprawny e-mail'
+                    : null,
               ),
               const SizedBox(height: 12),
               TextFormField(

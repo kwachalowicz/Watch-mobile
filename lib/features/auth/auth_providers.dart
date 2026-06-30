@@ -32,20 +32,17 @@ class AuthController extends Notifier<AuthState> {
 
   /// Rzuca [AuthException] przy błędnych danych - łap to w UI.
   Future<void> login(String email, String password) async {
-    final user = ref.read(authRepositoryProvider).login(
-          email: email,
-          password: password,
-        );
+    final user = ref
+        .read(authRepositoryProvider)
+        .login(email: email, password: password);
     state = AuthAuthenticated(user);
   }
 
   /// Rzuca [AuthException] przy błędnych danych - łap to w UI.
   Future<void> register(String email, String password, {String? name}) async {
-    final user = ref.read(authRepositoryProvider).register(
-          email: email,
-          password: password,
-          name: name,
-        );
+    final user = ref
+        .read(authRepositoryProvider)
+        .register(email: email, password: password, name: name);
     state = AuthAuthenticated(user);
   }
 

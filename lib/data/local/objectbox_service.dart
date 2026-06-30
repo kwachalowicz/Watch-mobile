@@ -59,7 +59,6 @@ class ObjectBoxService {
     return _instance = ObjectBoxService._(store);
   }
 
-
   static Future<ObjectBoxService> initAt(String directory) async {
     final existing = _instance;
     if (existing != null) return existing;
